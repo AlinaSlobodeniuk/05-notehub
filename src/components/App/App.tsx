@@ -41,7 +41,7 @@ export default function App() {
 
       {isLoading && <Loader />}
       {isError && <Error message={error?.message || 'An unknown error occurred'} />}
-      {data?.notes?.length ? <NoteList notes={data.notes} /> : null}
+      {data?.notes?.length ? <NoteList notes={data.notes} /> : ''}
       {isModalOpen && <NoteModal onClose={() => setIsModalOpen(false)} />}
     </div>
   );
