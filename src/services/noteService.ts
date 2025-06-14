@@ -35,7 +35,13 @@ export const fetchNotes = async (search: string, page: number): Promise<FetchNot
     search: search || undefined,
   };
   const response: AxiosResponse<FetchNotesResponse> = await axiosInstance.get('/notes', { params });
-  return response.data;
+
+  const notes = response.data.notes || [];
+  const totalPages = response.data.totalPages;
+  return {
+    notes, 
+    totalPages: totalPages > 0 ? totalPages : 1,
+  };
 };
 
 export const createNote = async (note: CreateNoteTodo): Promise<Note> => {
